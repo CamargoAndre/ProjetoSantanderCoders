@@ -4,6 +4,7 @@ import model.Loja;
 import view.LojaView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -95,6 +96,18 @@ public class LojaController {
 
     private void comprarProduto() {
 
+        CarrinhoController carrinhoController = new CarrinhoController();
+        carrinhoController.menuCarrinho();
+
+
+
+    }
+
+    public Map<String, Object> pesquisaProdutoId(Integer id) {
+
+        Map<String,Object> produto = new HashMap<>();
+        produto = Loja.listaProduto.get(id);
+        return produto;
 
     }
 }
