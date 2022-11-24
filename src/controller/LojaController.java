@@ -106,6 +106,9 @@ public class LojaController {
     public Map<String, Object> pesquisaProdutoId(Integer id) {
 
         Map<String,Object> produto = new HashMap<>();
+        if(id >= Loja.listaProduto.size()){
+            return produto;
+        }
         produto = Loja.listaProduto.get(id);
         return produto;
 

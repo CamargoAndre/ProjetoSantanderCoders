@@ -1,5 +1,6 @@
 package controller;
 
+import model.Carrinho;
 import view.CarrinhoView;
 import view.LojaView;
 
@@ -21,7 +22,7 @@ public class CarrinhoController {
             String opcao = carrinhoView.opcao();
             switch (opcao) {
                 case "1"-> adicionarCarrinho();
-//                case "2"-> listarProduto();
+                case "2"-> view.listarProduto();
 //                case "3"-> pesquisarProduto();
 //                case "4"-> listarCarrinho();
 //                case "5"-> retirarProduto();
@@ -42,12 +43,23 @@ public class CarrinhoController {
     private void adicionarCarrinho() {
 
         String id = view.pegarIdProduto();
+        Integer qtde = Integer.valueOf(carrinhoView.pegarQuantidade());
         Map<String, Object> produto = new HashMap<>();
-        LojaController lojaController;
+        LojaController lojaController = new LojaController();
         produto = lojaController.pesquisaProdutoId(Integer.valueOf(id));
         if(produto.isEmpty()){
-            System.out.println("Produto não encontrado.");
+            carrinhoView.produtoNaoEncontrado();
+            return;
         }
+        int qtdeLoja = (Integer)produto.get("quantidade");
+        if(qtdeLoja < qtde){
+            carrinhoView.qtdeAcimaLimite(qtdeLoja);
+            return;
+        }
+        produto.put("quantidade",qtde);
+
+        Carrinho.listaCompra.add(produto);
+        System.out.println(Carrinho.listaCompra);
 
     }
 }
