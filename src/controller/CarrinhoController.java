@@ -1,7 +1,6 @@
 package controller;
 
 import model.Carrinho;
-import model.Loja;
 import view.CarrinhoView;
 import view.LojaView;
 

@@ -1,7 +1,7 @@
 package view;
 
 import model.Carrinho;
-import model.Loja;
+
 
 import java.util.Map;
 import java.util.Scanner;
