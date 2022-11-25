@@ -1,6 +1,7 @@
 package controller;
 
 import model.Carrinho;
+import model.Loja;
 import view.CarrinhoView;
 import view.LojaView;
 
@@ -62,11 +63,19 @@ public class CarrinhoController {
 
         String id = view.pegarIdProduto();
 
-        Integer qtde = Integer.valueOf(carrinhoView.pegarQuantidade());
         Map<String, Object> produto;
         Map<String, Object> produtoCarrinho = new HashMap<>();
         LojaController lojaController = new LojaController();
         produto = lojaController.pesquisaProdutoId(Integer.valueOf(id));
+        Boolean existe = verificaProdutoCarrinho(produto);
+
+        if(existe){
+            System.out.println("Produto já adicionado no carrinho!");
+            return;
+        }
+
+        Integer qtde = Integer.valueOf(carrinhoView.pegarQuantidade());
+
         if(produto.isEmpty()){
             carrinhoView.produtoNaoEncontrado();
             return;
@@ -82,6 +91,20 @@ public class CarrinhoController {
 
         Carrinho.listaCompra.add(produtoCarrinho);
         System.out.println("Produto: " + produto.get("produto") + " adicionado no carrinho");
+
+    }
+
+    private Boolean verificaProdutoCarrinho(Map<String, Object> produto) {
+
+        for (int i = 0; i < Carrinho.listaCompra.size(); i++) {
+            String nomeProdutoCarinho = (String) Carrinho.listaCompra.get(i).get("produto");
+            String nomeProduto = (String) produto.get("produto");
+            if(nomeProduto.equals(nomeProdutoCarinho)){
+                return true;
+            }
+
+        }
+        return false;
 
     }
 
