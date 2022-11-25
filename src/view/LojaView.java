@@ -17,8 +17,8 @@ public class LojaView {
             System.out.println("2 - Editar Produto");
             System.out.println("3 - Excluir Produto");
             System.out.println("4 - Pesquisar Produto");
-            System.out.println("5 - Comprar Produto");
-            System.out.println("0 - Sair");
+            System.out.println("5 - Listar Produtos");
+            System.out.println("0 - Voltar ao Menu Inicial");
 
             String opcao = sc.nextLine();
             return opcao;

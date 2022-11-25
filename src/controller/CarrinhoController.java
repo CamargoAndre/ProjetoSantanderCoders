@@ -23,16 +23,13 @@ public class CarrinhoController {
         while (continuar) {
             String opcao = carrinhoView.opcao();
             switch (opcao) {
-                case "1" -> adicionarCarrinho();
-                case "2" -> view.listarProduto();
-                case "3" -> lojaController.pesquisarProduto();
+                case "1" -> view.listarProduto();
+                case "2" -> lojaController.pesquisarProduto();
+                case "3" -> adicionarCarrinho();
                 case "4" -> listarCarrinho();
                 case "5" -> retirarProduto();
                 case "6" -> finalizaCompra();
-                case "0" -> {
-                    System.out.println("Saindo!");
-                    continuar = false;
-                }
+                case "0" -> continuar = false;
                 default -> System.out.println("Opção inválida");
             }
         }

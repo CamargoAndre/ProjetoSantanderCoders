@@ -23,15 +23,18 @@ public class LojaController {
                 case "2"-> editarProduto();
                 case "3"-> excluirProduto();
                 case "4"-> pesquisarProduto();
-                case "5"-> comprarProduto();
-                case "0"->{
-                    System.out.println("Saindo!");
-                    continuar=false;
-                }
+                case "5"-> listarProdutos();
+                case "0"-> continuar=false;
                 default-> System.out.println("Opção inválida");
 
             }
         }
+    }
+
+    private void listarProdutos() {
+
+        view.listarProduto();
+
     }
 
     public void atualizaLoja() {
@@ -91,14 +94,6 @@ public class LojaController {
         view.resultadoPesquisa(resultadoBusca);
     }
 
-    private void comprarProduto() {
-
-        CarrinhoController carrinhoController = new CarrinhoController();
-        carrinhoController.menuCarrinho();
-
-
-
-    }
 
     public Map<String, Object> pesquisaProdutoId(Integer id) {
 
