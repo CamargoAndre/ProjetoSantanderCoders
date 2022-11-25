@@ -11,7 +11,7 @@ import java.util.Map;
 public class LojaController {
 
     private LojaView view = new LojaView();
-
+    private LojaDAO lojaDAO = new LojaDAO();
 
     public void menu() {
         Boolean continuar = true;
@@ -36,7 +36,6 @@ public class LojaController {
 
     public void atualizaLoja() {
 
-        LojaDAO lojaDAO = new LojaDAO();
         Loja.listaProduto = lojaDAO.pegarLista();
 
     }
@@ -110,5 +109,32 @@ public class LojaController {
         produto = Loja.listaProduto.get(id);
         return produto;
 
+    }
+
+    public void atualizarProdutos(List<Map<String, Object>> listaCompra) {
+
+        for (int i = 0; i < Loja.listaProduto.size(); i++) {
+
+            Map<String, Object> produtosLista = Loja.listaProduto.get(i);
+            String nomeListaProduto = (String) produtosLista.get("produto");
+
+            for (int j = 0; j < listaCompra.size(); j++) {
+
+                Map<String, Object> produtoCarrinho = listaCompra.get(j);
+                String nomeListaCarrinho = (String) produtoCarrinho.get("produto");
+
+                if(nomeListaProduto.equals(nomeListaCarrinho)){
+
+                    Integer qtdeListaProduto = (Integer) produtosLista.get("quantidade");
+                    Integer qtdeListaCarrinho = (Integer) produtoCarrinho.get("quantidade");
+
+                    Integer qtdeFinal = qtdeListaProduto - qtdeListaCarrinho;
+
+                    produtosLista.put("quantidade", qtdeFinal);
+                    Loja.listaProduto.set(i,produtosLista);
+                }
+            }
+        }
+        LojaDAO.gravarProdutos(Loja.listaProduto);
     }
 }

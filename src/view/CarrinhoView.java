@@ -65,4 +65,17 @@ public class CarrinhoView {
     public void qtdeAcimaLimite(Integer qtde) {
         System.out.println("Não tem a quantidade desejada. Nosso estoque total é: " + qtde);
     }
+
+    public Boolean finalizarCompraView() {
+        System.out.println("Deseja finalizar Compra: ");
+        System.out.println("Digite 1 para Sim;");
+        System.out.println("Digite 2 para Não.");
+
+        Integer opcao = Integer.valueOf(sc.nextLine());
+
+        if(opcao == 1){
+            return true;
+        }
+        return false;
+    }
 }

@@ -28,7 +28,7 @@ public class CarrinhoController {
                 case "3" -> lojaController.pesquisarProduto();
                 case "4" -> listarCarrinho();
                 case "5" -> retirarProduto();
-//                case "6" -> finalizaCompra();
+                case "6" -> finalizaCompra();
                 case "0" -> {
                     System.out.println("Saindo!");
                     continuar = false;
@@ -40,6 +40,17 @@ public class CarrinhoController {
 
     private void finalizaCompra() {
 
+        carrinhoView.listarCarrinhoView();
+
+        Boolean resposta = carrinhoView.finalizarCompraView();
+
+        if(!resposta){
+            return;
+        }
+        lojaController.atualizarProdutos(Carrinho.listaCompra);
+
+        System.out.println("!!!!!Muito obrigado Por Sua Compra!!!!");
+        System.exit(0);
     }
 
     private void retirarProduto() {
@@ -53,8 +64,10 @@ public class CarrinhoController {
     private void adicionarCarrinho() {
 
         String id = view.pegarIdProduto();
+
         Integer qtde = Integer.valueOf(carrinhoView.pegarQuantidade());
-        Map<String, Object> produto = new HashMap<>();
+        Map<String, Object> produto;
+        Map<String, Object> produtoCarrinho = new HashMap<>();
         LojaController lojaController = new LojaController();
         produto = lojaController.pesquisaProdutoId(Integer.valueOf(id));
         if(produto.isEmpty()){
@@ -66,9 +79,11 @@ public class CarrinhoController {
             carrinhoView.qtdeAcimaLimite(qtdeLoja);
             return;
         }
-        produto.put("quantidade",qtde);
+        produtoCarrinho.put("produto", produto.get("produto"));
+        produtoCarrinho.put("quantidade", qtde);
+        produtoCarrinho.put("preco", produto.get("preco"));
 
-        Carrinho.listaCompra.add(produto);
+        Carrinho.listaCompra.add(produtoCarrinho);
         System.out.println("Produto: " + produto.get("produto") + " adicionado no carrinho");
 
     }
