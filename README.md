@@ -1,6 +1,8 @@
 # ProjetoSantanderCoders
 Projeto de Logica de Programação - Santander Coders - Criação Loja
 
+Turma #939 Santander Coders | WF
+
 ## Grupo
 * Andre de Camargo
 * Enzo Ramos
