@@ -30,7 +30,7 @@ public class LojaView {
             Map<String, Object> produto = new HashMap<>();
 
             System.out.println("Digite o nome do produto: ");
-            produto.put("produto", sc.nextLine());
+            produto.put("produto", sc.nextLine().toUpperCase());
             System.out.println("Digite o preço do produto: ");
             produto.put("preco", sc.nextDouble());
             System.out.println("Digite a quantidade do produto: ");

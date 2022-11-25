@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LojaDAO {
-    static Path path = Paths.get("D:\\Cloud\\MEGA\\CURSOS\\Santander_Coders\\files\\Loja.txt");
+    static Path path = Paths.get("C:\\Users\\ACER\\IdeaProjects\\ProjetoSantanderCoders\\src\\Loja.txt");
     public static void gravarProdutos(List<Map<String, Object>> listaProduto) {
         try {
                 if (!Files.exists(path)) {
