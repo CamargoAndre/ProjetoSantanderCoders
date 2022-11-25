@@ -45,7 +45,6 @@ public class LojaView {
 
         System.out.println("\n");
 
-
         for (int i = 0; i < Loja.listaProduto.size(); i++) {
 
             Map<String, Object> produto = Loja.listaProduto.get(i);

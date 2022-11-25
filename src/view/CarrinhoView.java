@@ -1,5 +1,9 @@
 package view;
 
+import model.Carrinho;
+import model.Loja;
+
+import java.util.Map;
 import java.util.Scanner;
 
 public class CarrinhoView {
@@ -20,6 +24,30 @@ public class CarrinhoView {
         System.out.println("\n");
 
         return sc.nextLine();
+    }
+    public void listarCarrinhoView(){
+        System.out.println("\n");
+        System.out.println("----Sua Lista de Compra-----");
+
+        Double valorCompra = 0.0;
+            for (int i = 0; i < Carrinho.listaCompra.size(); i++) {
+            Map<String, Object> produto = Carrinho.listaCompra.get(i);
+
+            Double preco = (Double)produto.get("preco");
+            Integer qtde = (Integer) produto.get("quantidade");
+            Double valorTotalProduto = preco * qtde;
+
+            System.out.print("Id: " + i + " | ");
+            System.out.print("Produto: " + produto.get("produto") + " | ");
+            System.out.print("Quantidade: " + produto.get("quantidade") + " | ");
+            System.out.printf("Preço Unitario: R$ %s | ", produto.get("preco"));
+            System.out.printf("Valor Total: R$ %.2f \n", valorTotalProduto);
+            valorCompra += valorTotalProduto;
+
+        }
+
+        System.out.printf("Valor Total do Seu Pedido é: R$ %.2f", valorCompra);
+        System.out.println("\n");
     }
 
 

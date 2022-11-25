@@ -10,34 +10,40 @@ import java.util.Map;
 public class CarrinhoController {
 
     private CarrinhoView carrinhoView;
+    private LojaController lojaController;
     private LojaView view;
 
     public void menuCarrinho() {
 
         carrinhoView = new CarrinhoView();
         view = new LojaView();
+        lojaController = new LojaController();
         Boolean continuar = true;
 
-        while(continuar){
+        while (continuar) {
             String opcao = carrinhoView.opcao();
             switch (opcao) {
-                case "1"-> adicionarCarrinho();
-                case "2"-> view.listarProduto();
-//                case "3"-> pesquisarProduto();
-//                case "4"-> listarCarrinho();
-//                case "5"-> retirarProduto();
-//                case "6"-> {
-//                    finalizaCompra();
-//                    continuar=false;
-//                }
+                case "1" -> adicionarCarrinho();
+                case "2" -> view.listarProduto();
+                case "3" -> lojaController.pesquisarProduto();
+                case "4" -> listarCarrinho();
+                case "5" -> retirarProduto();
+//                case "6" -> finalizaCompra();
                 case "0" -> {
                     System.out.println("Saindo!");
                     continuar = false;
                 }
                 default -> System.out.println("Opção inválida");
             }
-
         }
+    }
+
+    private void retirarProduto() {
+        carrinhoView.listarCarrinhoView();
+        Integer id = Integer.valueOf(view.pegarIdProduto());
+        Map<String, Object> remover = Carrinho.listaCompra.get(id);
+        Carrinho.listaCompra.remove(remover);
+        System.out.println("Item Removido do Carrinho!\n");
     }
 
     private void adicionarCarrinho() {
@@ -59,7 +65,13 @@ public class CarrinhoController {
         produto.put("quantidade",qtde);
 
         Carrinho.listaCompra.add(produto);
-        System.out.println(Carrinho.listaCompra);
+        System.out.println("Produto: " + produto.get("produto") + " adicionado no carrinho");
+
+    }
+
+    private void listarCarrinho() {
+
+        carrinhoView.listarCarrinhoView();
 
     }
 }

@@ -10,11 +10,10 @@ import java.util.Map;
 
 public class LojaController {
 
-    private LojaView view;
+    private LojaView view = new LojaView();
 
 
     public void menu() {
-        view = new LojaView();
         Boolean continuar = true;
 
         while(continuar){
@@ -69,7 +68,6 @@ public class LojaController {
 
         view.listarProduto();
         Integer id = Integer.valueOf(view.pegarIdProduto());
-        System.out.println(id);
         Map<String, Object> remover = Loja.listaProduto.get(id);
         Loja.listaProduto.remove(remover);
 
@@ -77,7 +75,7 @@ public class LojaController {
 
     }
 
-    private void pesquisarProduto() {
+    public void pesquisarProduto() {
 
         String pesquisaProduto = view.pegarNomeProduto();
         List<Map<String,Object>> resultadoBusca = new ArrayList<>();
