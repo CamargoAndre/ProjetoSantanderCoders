@@ -38,6 +38,10 @@ public class CarrinhoController {
         }
     }
 
+    private void finalizaCompra() {
+
+    }
+
     private void retirarProduto() {
         carrinhoView.listarCarrinhoView();
         Integer id = Integer.valueOf(view.pegarIdProduto());

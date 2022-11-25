@@ -77,7 +77,7 @@ public class LojaController {
 
     public void pesquisarProduto() {
 
-        String pesquisaProduto = view.pegarNomeProduto();
+        String pesquisaProduto = view.pegarNomeProduto().toUpperCase();
         List<Map<String,Object>> resultadoBusca = new ArrayList<>();
 
         for (int i = 0; i < Loja.listaProduto.size() ; i++) {
